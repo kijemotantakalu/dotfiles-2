@@ -1,0 +1,131 @@
+// waybar config
+// 111121
+
+{
+"layer": "top",
+"position": "top",
+"modules-left": ["idle_inhibitor", "cpu", "temperature", "memory", "battery", "disk", "pulseaudio", "custom/cap-left"],
+"modules-center": ["custom/cap-right", "sway/workspaces", "custom/cap-left"],
+"modules-right": ["custom/cap-right", "custom/weather", "network", "clock", "custom/offswitch"],
+"sway/window": {
+},
+"custom/weather": {
+  "tooltip": false,
+  "min-length": 5,
+  "exec": "curl 'https://wttr.in/Lodz?m&format='%t''",
+  "interval": 3600,
+},
+"battery": {
+  "interval": 15,
+  "min-length": 5,
+  "states": {
+  "full": 95,
+  "warning": 20,
+  "critical": 10,
+  },
+  "tooltip": false,
+  "full-at": 90,
+  "format-plugged": "{icon} {capacity}%",
+  "format-charging": "{icon} {capacity}%",
+  "format": "{icon} {capacity}%",
+  "format-icons": ["","","","",""],
+},
+"clock": {
+  "format": " {:%a %b %d %H:%M}",
+  "tooltip": false,
+  "min-length": 18,
+},
+"custom/offswitch": {
+  "tooltip": false,
+  "format": "",
+  "interval": "once",
+  "on-click": "systemctl poweroff",
+},
+"network": {
+  "format-wifi": " {essid}",
+  "format-ethernet": " {ipaddr}",
+  "format-linked": " {ifname}",
+  "format-disconnected": " Disconnected",
+  "tooltip": false,
+  "max-length": 20,
+  "min-length": 14,
+},
+"pulseaudio": {
+  "tooltip": false,
+  "min-length": 5,
+  "format": "{icon} {volume}%",
+  "format-bluetooth": "{icon} {volume}%",
+  "format-muted": "MUTE",
+  "format-icons": {
+  "headphone": "",
+  "headset": "",
+  "default": ["", "", ""],
+  },
+  "on-click": "pamixer -t",
+  "on-click-right": "pavucontrol",
+},
+"idle_inhibitor": {
+  "tooltip": false,
+	"format": "{icon}",
+	"format-icons": {
+	"activated": "",
+	"deactivated": "",
+  },
+},
+"cpu": {
+  "interval": 4,
+  "min-length": 6,
+  "format": " {usage}%",
+  "tooltip": false,
+  "states": {
+  "critical": 90,
+  },
+},
+"temperature": {
+  "tooltip": false,
+  "min-length": 6,
+  "critical-threshold": 90,
+  "format": "{icon} {temperatureC}°C",
+  "format-critical": "{icon} {temperatureC}°C",
+  "format-icons": {
+  "default": ["", "", "", "", ""],
+  },
+},
+"memory": {
+  "tooltip": false,
+  "format": " {percentage}%",
+  "states": {
+    "critical":90,
+  },
+  "min-length": 5,
+},
+"disk": {
+  "tooltip": false,
+  "path": "/",
+  "interval": 60,
+  "min-length": 5,
+  "format": " {percentage_used}%",
+  "states": {
+  "critical": 90,
+  },
+},
+"sway/workspaces": {
+  "tooltip": false,
+  "disable-scroll": true,
+  "all-outputs": true,
+  "format": "{icon}",
+  "format-icons": {
+    "1": "  ",
+    "2": "  ",
+    "3": "  "
+  }
+},
+"custom/cap-left": {
+  "tooltip": false,
+	"format": "",
+},
+"custom/cap-right": {
+  "tooltip": false,
+	"format": "",
+},
+}
